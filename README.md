@@ -1,20 +1,48 @@
-# SwingAI
+# ✳ SwingAI
 
-Swing is a personal AI chat app with saved accounts and conversations, model selection, and an optional Agent mode. This repository includes:
+**A place to think, chat, and take the next small step.**
 
-- `server/` — the Node.js server, chat interface, account storage, Agent tools and tests.
-- `apple/` — the native SwiftUI Xcode project for iPhone and iPad, with Mac Catalyst enabled. See its README for current feature limitations.
-- `windows/` — source for the Windows app launcher.
-- `website/` — the SwingAI introduction website and video.
+Swing is a self-hosted AI chat app with account-based conversation history, support for local model servers, and an optional Agent mode. Use it in a browser, try the Windows launcher, or explore the native SwiftUI app for Apple devices.
 
-## Start Swing on Windows
+## What you can do
 
-Install Node.js 22 or newer, start a compatible AI server with an installed model, then open `server/Start Chat.bat`. Visit the URL printed in the window and create the first Swing account on the PC. See [server/README.md](server/README.md) for full setup, security, and feature details. Run tests with `node --test` inside `server`.
+- **Chat with your models:** select an installed model or enter a custom name. Code replies appear in copyable, language-labeled blocks.
+- **Pick up where you left off:** conversations are saved to your account on your Swing server and can be opened from another device.
+- **Try Agent mode:** propose a folder or text-file action in your Agent workspace, or review a suggested PC click. Each supported action requires approval.
+- **Make it yours:** choose a light or dark theme, configure your model connection, and export your chats.
 
-The Apple project and Windows launcher are currently configured to reach `192.168.1.87:3000`. Change the configured address and rebuild if your server has a different address. The server must be running for those clients to connect.
+## Get started
 
-## Notes
+1. Install Node.js 22 or newer and run a compatible AI server with a text model installed.
+2. Open `server/Start Chat.bat` on Windows, or run `node server.mjs` inside `server/`.
+3. Open the address printed in the terminal. Create the first account on the server PC, then sign in.
 
-The existing server uses HTTP on the local network, so messages and credentials are not encrypted in transit. Use a trusted network. The native Apple project was prepared on Windows and still needs to be built and tested in Xcode. Agent mode supports a limited set of actions, each requiring review and approval.
+For model setup, Agent mode, troubleshooting, and phone access, see the [server setup guide](server/README.md).
 
-Runtime data, account records, chats, keys, dependencies, and build output are not included. Keep them out of version control.
+> **Network note:** The current server uses HTTP. Messages, passwords, and session cookies are not encrypted in transit. Use a trusted network. The server should not be exposed directly to the public internet.
+
+## Explore the project
+
+| Folder | What's inside |
+| --- | --- |
+| [server](server/) | Node.js server, browser chat interface, Agent tools, and tests |
+| [apple](apple/) | Native SwiftUI project for iPhone and iPad; Mac Catalyst enabled |
+| [windows](windows/) | Windows launcher source |
+| [website](website/) | SwingAI introduction site and video |
+
+The Apple app is an early version prepared on Windows; it still needs Xcode build and device testing. It does not yet include Agent mode. The Apple and Windows clients currently point to `192.168.1.87:3000`; change that address and rebuild for another server.
+
+## Tests
+
+```sh
+cd server
+node --test
+```
+
+Tests use temporary files and local mock servers. Desktop-click tests do not click your screen.
+
+## Contributing
+
+Ideas and bug reports are welcome through [GitHub Issues](https://github.com/us585/SwingAI/issues). When reporting a problem, describe your device, the steps to reproduce it, and what happened. Please leave out passwords, chat transcripts, and other private information.
+
+Swing is a work in progress. Some features and model behavior depend on the AI server and model you choose.
