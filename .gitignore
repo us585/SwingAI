@@ -1,0 +1,10 @@
+server/data/
+**/.env
+**/.env.*
+**/node_modules/
+**/.DS_Store
+**/DerivedData/
+**/build/
+**/xcuserdata/
+**/*.xcuserstate
+**/.openai/

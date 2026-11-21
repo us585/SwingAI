@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Swing · Local Chat</title><link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script></head>
+<body>
+<aside><a class="brand" href="/">Swing</a><div class="label">YOUR LOCAL WORKSPACE</div><button id="newChat">+ New chat</button><div class="label history-label">SAVED CHATS</div><nav id="chatList" aria-label="Saved chats"></nav><p id="storageNotice" role="status">Chats saved to your account.</p><button id="openSettings" type="button" aria-haspopup="dialog">Settings</button></aside>
+<main>
+<dialog class="settings" id="settings" aria-labelledby="settingsTitle">
+<div class="settings-top"><h2 id="settingsTitle">Settings</h2><button id="closeSettings" type="button" aria-label="Close settings">×</button></div>
+<section class="ollama-settings" aria-labelledby="ollama-title">
+<div class="settings-heading"><div><h2 id="ollama-title">Ollama</h2><p>Connect your chat to a local model.</p></div><label class="switch"><input id="ollamaEnabled" type="checkbox" role="switch" disabled><span class="switch-track" aria-hidden="true"></span><span id="ollamaState">Loading…</span><span class="sr-only">Ollama connection</span></label></div>
+<p class="settings-help">On uses your configured Ollama IP. Off uses an OpenAI-compatible local server at 127.0.0.1:11434. A server must still be running there. This switch does not stop the Ollama app.</p>
+<div class="toolbar"><label for="ollamaAddress">Ollama IP</label><input id="ollamaAddress" type="text" value="127.0.0.1:11434" placeholder="192.168.1.20:11434" spellcheck="false" autocomplete="off"><button id="saveAddress" class="quiet" type="button">Save address</button></div>
+<p class="settings-help" id="addressHelp">Local or private IPv4 address. Default port: 11434. Save before chatting.</p>
+<div class="toolbar"><button id="refresh" class="quiet" type="button">Refresh models</button></div>
+<p class="settings-help" id="availableModels">Choose an installed model or Custom in the message bar.</p>
+</section>
+<section class="ollama-settings" aria-labelledby="personal-title">
+<h2 id="personal-title">Appearance &amp; data</h2>
+<div class="preference-row"><div><label for="darkMode">Dark mode</label><p>Use a darker color theme.</p></div><label class="switch"><input id="darkMode" type="checkbox" role="switch" aria-label="Dark mode"><span class="switch-track" aria-hidden="true"></span></label></div>
+<div class="preference-row"><div><label for="saveChats">Save chats</label><p>Save new messages and drafts to your account on this server. Off pauses saving; existing chats stay available.</p></div><label class="switch"><input id="saveChats" type="checkbox" role="switch" aria-label="Save chats"><span class="switch-track" aria-hidden="true"></span></label></div>
+<div class="preference-row"><div><label for="training">Collect AI training examples</label><p>Keep a separate local copy of future prompts and replies for export. Does not train the model.</p></div><label class="switch"><input id="training" type="checkbox" role="switch" aria-label="Collect AI training examples"><span class="switch-track" aria-hidden="true"></span></label></div>
+<div class="preference-row"><div><label for="feedback">Use data to improve — local feedback</label><p>Show Helpful / Not helpful buttons and save replies you rate for later review. Does not automatically change the model.</p></div><label class="switch"><input id="feedback" type="checkbox" role="switch" aria-label="Collect local feedback"><span class="switch-track" aria-hidden="true"></span></label></div>
+<p class="settings-help">Training and feedback collection are separate from chat saving. Off stops new collection; existing data remains until you clear it. No data is sent to OpenAI or an analytics service.</p>
+<div class="data-actions"><button id="exportChats" type="button">Export chats</button><button id="exportTraining" type="button">Export training JSONL</button><button id="exportFeedback" type="button">Export feedback</button><button id="clearCollected" type="button">Clear collected data</button></div>
+<p id="dataStatus" class="settings-help" role="status"></p>
+</section><div class="settings-account"><button id="signOut" type="button">Sign out</button></div></dialog>
+<section id="messages" role="log" aria-label="Conversation" aria-live="polite"><div id="welcome"><div class="spark" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="58" height="70" viewBox="0 0 58 70" class="welcome-star" focusable="false"><path d="M29 14V56 M8 35H50 M14 20L44 50 M14 50L44 20" fill="none" stroke="#72965e" stroke-width="2.4"/></svg></div><p class="eyebrow">HELLO</p><h1>What’s on your mind?</h1><p>Ask a question, untangle an idea,<br>or start with a simple hello.</p><div class="ideas"><button data-prompt="Explain how a local AI chatbot works in simple terms.">Explain something</button><button data-prompt="Help me brainstorm a small creative weekend project.">Explore an idea</button></div></div></section>
+<footer><p id="status" role="status">Connecting to AI server…</p><form id="chatForm"><label class="sr-only" for="prompt">Your message</label><textarea id="prompt" rows="2" maxlength="12000" placeholder="Message Swing…"></textarea><div class="composer-bottom"><div class="model-controls"><label class="sr-only" for="modelPicker">AI model</label><select id="modelPicker"><option value="__custom__">Custom…</option></select><span id="customModelField" hidden><label class="sr-only" for="model">Custom model name</label><input id="model" type="text" placeholder="Type model name" maxlength="150" spellcheck="false" autocomplete="off"></span></div><button id="send" type="submit" disabled>Send ↑</button><button id="stop" type="button" hidden>Stop</button></div></form><div class="footnote">Enter to send · Shift + Enter for a new line · Model uses the last 9 exchanges.</div></footer>
+</main>
+</body></html>
+
+
+
+
+
+
+
+
