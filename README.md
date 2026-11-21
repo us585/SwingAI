@@ -1,4 +1,4 @@
-# ✳ SwingAI
+# SwingAI
 
 **A place to think, chat, and take the next small step.**
 
